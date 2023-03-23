@@ -10,6 +10,25 @@ def encoder(password):      # caitlin guiang
         new_password += str(element)
     return new_password
 
+def decoder(password):      # Joshua Barcenas
+    encode_pass = []
+    for i in range(len(password)):
+        # reverses encode operation
+        string = int(password[i]) - 3
+
+        # removes instances where num out of range (0,9)
+        if string == -3:
+            string = 7
+        elif string == -2:
+            string = 8
+        elif string == -1:
+            string = 9
+        string = f'{string}'
+        encode_pass.append(string)
+
+    # password is a string
+    encode_pass = ''.join(encode_pass)
+    return encode_pass
 def print_menu():        # creates menu prompt
     print("Menu")
     print("-" * 13)
@@ -24,6 +43,6 @@ if __name__ == "__main__":
             new_password = encoder(password)
             print("Your password has been encoded and stored!\n")
         elif option == 2:        # displays encoded password and original password
-            print(f"The encoded password is {new_password}, and the original password is {password}.\n")
+            print(f"The encoded password is {new_password}, and the original password is {decoder(new_password)}.\n")
         elif option == 3:        # stops the program
             break
